@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="compile">
+<property name ="src.java.dir" location="./src/ahm"/>
+<property name ="src.test.dir" location="./src/Hw"/>
+<property name ="result.dir" location="./target"/>
+<property name ="result.javaclasses.dir" location="${result.dir}/classes"/>
+<property name ="result.testclasses.dir" location="${result.dir}/testclasses"/>
+	
+
+
+<path id="NecessaryLibraries">
+        <pathelement location="./JUnit4/junit-4.12.jar"/>
+        <!--matcher-->
+ <pathelement location="./JUnit4/hamcrest.core_1.3.0v201303031735.jar"/>
+        <!--<pathelement location="./UsedLibraries/jacocoant.jar"/>-->
+    </path>
+    
+       <target name="compile">
+            <mkdir dir ="${result.javaclasses.dir}"/>
+            <javac srcdir="C:\Program Files\Java\jdk-10.0.1\bin" destdir="${result.javaclasses.dir}" debug="true" includeantruntime="false">
+            </javac>
+</target>
+        
+    <target name="compile-testcases" depends="compile">
+    
+        <mkdir dir="${result.testclasses.dir}"/>
+        <javac srcdir="${src.test.dir}"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
+            <classpath>
+                
+                <path refid="NecessaryLibraries"/>
+                <pathelement location="${result.javaclasses.dir}"/>
+            </classpath>
+        </javac>        
+    </target>
+    
+    <target name="test" depends="compile-testcases">
+        <junit printsummary="true" haltonfailure="true" fork="true">
+            <classpath>
+                <path refid="NecessaryLibraries"></path>
+                <pathelement location="${result.javaclasses.dir}"/>
+                <pathelement location="${result.testclasses.dir}"/>
+            </classpath>
+            <formatter type="brief" usefile="false"/>
+            <batchtest >
+                <fileset dir="${result.testclasses.dir}" >
+                     <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            
+        </junit>
+    </target>
+    </project>
+
+
+
+
+
