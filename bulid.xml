@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="compile">
+<project default="test">
 <property name ="src.java.dir" location="./src/ahm"/>
 <property name ="src.test.dir" location="./src/ahm"/>
 <property name ="result.dir" location="./target"/>
@@ -9,9 +9,9 @@
 
 
 <path id="NecessaryLibraries">
-        <pathelement location="./JUnit4/junit-4.12.jar"/>
+        <pathelement location="./ue/junit-4.12.jar"/>
         <!--matcher-->
- <pathelement location="./JUnit4/hamcrest.core_1.3.0v201303031735.jar"/>
+ <pathelement location="./ue/hamcrest.core_1.3.0v201303031735.jar"/>
         <!--<pathelement location="./UsedLibraries/jacocoant.jar"/>-->
     </path>
     
